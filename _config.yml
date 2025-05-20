@@ -26,8 +26,6 @@ description: >- # used by seo meta and the atom feed
 url: "https://traysoncombs.github.io"
 github:
   username: traysoncombs # change to your GitHub username
-twitter:
-  username: twitter_username # change to your Twitter username
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
@@ -142,7 +140,7 @@ pwa:
 paginate: 10
 
 # The base URL of your site
-baseurl: "traysoncombs.github.io"
+baseurl: ""
 
 # ------------ The following options are not recommended to be modified ------------------
 
