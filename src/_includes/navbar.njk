@@ -1,0 +1,76 @@
+<nav class="bg-secondary border-b border-accent/20 sticky top-0 z-40 w-full">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="/" class="text-xl font-bold text-primary-text hover:text-accent transition-colors flex items-center">
+          Trayson
+        </a>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-8">
+          <a href="/"
+             class="text-primary-text hover:text-accent px-3 py-2 rounded-md text-base font-medium transition-colors">Home</a>
+          <a href="/astrophotography"
+             class="text-primary-text hover:text-accent px-3 py-2 rounded-md text-base font-medium transition-colors">Astro</a>
+          <a href="/blog"
+             class="text-primary-text hover:text-accent px-3 py-2 rounded-md text-base font-medium transition-colors">Blog</a>
+        </div>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="-mr-2 flex md:hidden">
+        <button type="button" id="mobile-menu-btn"
+                class="inline-flex items-center justify-center p-2 rounded-md text-primary-text hover:text-accent focus:outline-none transition-colors"
+                aria-controls="mobile-menu" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <!-- Icon when menu is closed -->
+          <svg class="block h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+               stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <!-- Icon when menu is open (hidden by default) -->
+          <svg class="hidden h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+               stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu, show/hide based on menu state. -->
+  <div class="hidden md:hidden bg-secondary border-b border-accent/20 shadow-lg absolute w-full left-0"
+       id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-2 sm:px-3">
+      <a href="/"
+         class="text-primary-text hover:text-accent block px-4 py-5 rounded-md text-lg font-medium border-b-2 border-accent/10 hover:bg-primary/50 transition-colors">Home</a>
+      <a href="/astrophotography"
+         class="text-primary-text hover:text-accent block px-4 py-5 rounded-md text-lg font-medium border-b-2 border-accent/10 hover:bg-primary/50 transition-colors">Astro</a>
+      <a href="/blog"
+         class="text-primary-text hover:text-accent block px-4 py-5 rounded-md text-lg font-medium hover:bg-primary/50 transition-colors">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const icons = btn.querySelectorAll('svg');
+
+    btn.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', !isExpanded);
+      menu.classList.toggle('hidden');
+
+      // Toggle icons
+      icons[0].classList.toggle('hidden');
+      icons[0].classList.toggle('block');
+      icons[1].classList.toggle('hidden');
+      icons[1].classList.toggle('block');
+    });
+  });
+</script>

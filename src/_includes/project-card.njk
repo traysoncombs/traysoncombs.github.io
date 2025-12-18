@@ -1,0 +1,38 @@
+<div
+  class="project-card group flex flex-col bg-secondary border border-secondary rounded-lg p-4 hover:border-accent hover:shadow-lg transition-all cursor-pointer"
+  data-project-id="{{ project.id }}">
+  <h3
+    class="text-xl font-bold mb-2 text-primary-text group-hover:text-accent transition-colors duration-300">{{ project.title }}</h3>
+  <p class="text-sm text-secondary-text mb-3">{{ project.description }}</p>
+  <p class="text-xs text-secondary-text mt-auto pt-2 border-t border-gray-700">{{ project.date }}</p>
+</div>
+
+<div id="modal-{{ project.id }}"
+     class="modal hidden fixed inset-0 backdrop-blur-md items-center justify-center z-50 transition-all duration-300">
+  <div class="modal-content bg-secondary border border-accent rounded-lg p-6 max-w-2xl w-full mx-4 relative">
+    <button
+      class="modal-close absolute top-4 right-4 text-primary-text hover:text-accent text-2xl">
+      &times;
+    </button>
+    <div class="mb-6">
+      <h2 class="text-2xl font-bold text-primary-text mb-2">{{ project.title }}</h2>
+      {% if project.technologies %}
+        <div class="flex flex-wrap gap-2 mb-4">
+          {% for tech in project.technologies %}
+            <span
+              class="bg-accent lg:text-xs text-[0.6em] px-1 sm:px-[0.3em] py-1 sm:py-[0.3em] rounded text-white">{{ tech }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+    <p class="text-secondary-text text-md mb-4">{{ project.detailedDescription or project.description }}</p>
+    <hr class="mb-4">
+    <p class="text-sm text-secondary-text mb-4"><span class="font-bold">Date:</span> {{ project.date }}</p>
+
+    {% if project.link %}
+      <a href="{{ project.link }}" target="_blank"
+         class="inline-block bg-primary hover:bg-accent text-primary-text px-4 py-2 rounded transition-colors">View
+        Project</a>
+    {% endif %}
+  </div>
+</div>

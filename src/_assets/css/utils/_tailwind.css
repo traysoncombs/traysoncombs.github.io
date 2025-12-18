@@ -5,16 +5,20 @@
 @theme {
   --font-*: initial;
   --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Monaco", monospace;
+	--font-stack: 'Courier New', Courier, monospace;
 
-  --color-ws-blue-100: #e6f0ff;
-  --color-ws-blue-200: #bfdaff;
-  --color-ws-blue-300: #99c3ff;
-  --color-ws-blue-400: #4d97fe;
-  --color-ws-blue-500: #006afe;
-  --color-ws-blue-600: #005fe5;
-  --color-ws-blue-700: #004098;
-  --color-ws-blue-800: #003072;
-  --color-ws-blue-900: #00204c;
+  --color-darkest: #2d2e2d;
+  --color-dark: #7a7a7a;
+  --color-light: #e2fbf9;
+  --color-lighter: #eddcff;
+  --color-lightest: #ffedfe;
+
+	--color-primary: #121212;
+	--color-secondary: #242424;
+	--color-primary-text: #b3b3b3;
+	--color-secondary-text: #868484;
+	--color-accent: #7c4dff;
 }
 
 /*
