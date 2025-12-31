@@ -3,7 +3,7 @@ layout: base.njk
 title: Astrophotography Gallery
 description: A collection of astrophotography images
 scripts:
-  - astrophotography.js
+- astrophotography.js
 ---
 <div class="gallery-container">
   <h1 class="text-3xl font-bold text-primary-text mb-6">Astrophotography Gallery</h1>
@@ -20,10 +20,28 @@ scripts:
     <button id="lightbox-prev" class="lightbox-nav lightbox-prev">‹</button>
     <button id="lightbox-next" class="lightbox-nav lightbox-next">›</button>
     <div class="lightbox-image-container relative">
-      <div id="lightbox-loader" class="absolute inset-0 flex items-center justify-center z-20 hidden">
+      <div id="lightbox-loader" class="flex absolute inset-0 items-center justify-center z-20 hidden">
         <div class="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
       </div>
       <img id="lightbox-image" src="" alt="Astrophotography" class="lightbox-image">
+    </div>
+    <div id="lightbox-info" class="lightbox-info">
+      <h2 id="lightbox-title" class="text-2xl font-bold"></h2>
+      <p id="lightbox-description" class="mt-4"></p>
+      <div class="mt-4">
+        <button id="details-toggle" class="text-accent font-bold">Show Details</button>
+        <div id="lightbox-details" class="hidden mt-2">
+          <p><strong>Date:</strong> <span id="lightbox-date"></span></p>
+          <div id="lightbox-photo-details-container">
+            <p><strong>Photo Details:</strong></p>
+            <ul id="lightbox-photo-details" class="list-disc list-inside"></ul>
+          </div>
+          <div id="lightbox-equipment-container">
+            <p><strong>Equipment:</strong></p>
+            <ul id="lightbox-equipment" class="list-disc list-inside"></ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

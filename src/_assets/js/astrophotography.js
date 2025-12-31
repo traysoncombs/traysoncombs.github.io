@@ -110,6 +110,18 @@ const lightbox = {
   el: null,
   imageEl: null,
   loaderEl: null,
+  titleEl: null,
+  descriptionEl: null,
+  dateEl: null,
+  photoDetailsEl: null,
+  equipmentEl: null,
+  photoDetailsContainerEl: null,
+  equipmentContainerEl: null,
+  detailsToggleEl: null,
+  detailsEl: null,
+  navPrevEl: null,
+  navNextEl: null,
+  infoEl: null,
   currentIndex: 0,
 
   // Interaction state
@@ -130,13 +142,26 @@ const lightbox = {
     this.el = document.getElementById('lightbox');
     this.imageEl = document.getElementById('lightbox-image');
     this.loaderEl = document.getElementById('lightbox-loader');
+    this.titleEl = document.getElementById('lightbox-title');
+    this.descriptionEl = document.getElementById('lightbox-description');
+    this.dateEl = document.getElementById('lightbox-date');
+    this.photoDetailsEl = document.getElementById('lightbox-photo-details');
+    this.equipmentEl = document.getElementById('lightbox-equipment');
+    this.photoDetailsContainerEl = document.getElementById('lightbox-photo-details-container');
+    this.equipmentContainerEl = document.getElementById('lightbox-equipment-container');
+    this.detailsToggleEl = document.getElementById('details-toggle');
+    this.detailsEl = document.getElementById('lightbox-details');
+    this.navPrevEl = document.getElementById('lightbox-prev');
+    this.navNextEl = document.getElementById('lightbox-next');
+    this.infoEl = document.querySelector('.lightbox-info');
 
     document.getElementById('lightbox-close').addEventListener('click', () => this.close());
-    document.getElementById('lightbox-prev').addEventListener('click', () => this.showPrev());
-    document.getElementById('lightbox-next').addEventListener('click', () => this.showNext());
+    this.navPrevEl.addEventListener('click', () => this.showPrev());
+    this.navNextEl.addEventListener('click', () => this.showNext());
     this.el.addEventListener('click', (e) => {
       if (e.target === this.el) this.close();
     });
+    this.detailsToggleEl.addEventListener('click', () => this.toggleDetails());
 
     this.addEventListeners();
   },
@@ -153,7 +178,49 @@ const lightbox = {
       this.loaderEl.classList.add('hidden');
       this.imageEl.style.opacity = '1';
     };
+
     this.imageEl.src = image.fullRes;
+    this.titleEl.textContent = image.title;
+    this.descriptionEl.textContent = image.description;
+
+    const dateStr = image.date;
+    const year = dateStr.substring(0, 4);
+    const month = dateStr.substring(4, 6);
+    const day = dateStr.substring(6, 8);
+    this.dateEl.textContent = `${month}/${day}/${year}`;
+
+    this.photoDetailsEl.innerHTML = '';
+    this.equipmentEl.innerHTML = '';
+
+    const createDetailList = (obj, parentEl, containerEl) => {
+      let itemsAdded = 0;
+      if (obj) {
+        for (const key in obj) {
+          if (obj[key] !== -1 && obj[key] !== '') {
+            itemsAdded++;
+            const formattedKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            let value = obj[key];
+            if (key === 'exposure_length') {
+              value += ' seconds';
+            } else if (key === 'integration_time') {
+              value += ' minutes';
+            }
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${formattedKey}:</strong> ${value}`;
+            parentEl.appendChild(li);
+          }
+        }
+      }
+      if (containerEl) {
+        containerEl.style.display = itemsAdded > 0 ? '' : 'none';
+      }
+    };
+
+    createDetailList(image.photo_details, this.photoDetailsEl, this.photoDetailsContainerEl);
+    createDetailList(image.equipment, this.equipmentEl, this.equipmentContainerEl);
+
+    this.detailsEl.classList.add('hidden');
+    this.detailsToggleEl.textContent = 'Show Details';
 
     this.resetZoom();
     this.el.classList.remove('hidden');
@@ -166,8 +233,13 @@ const lightbox = {
     this.el.classList.remove('flex');
     document.body.style.overflow = '';
     this.resetZoom();
-    this.imageEl.src = '';
+		this.imageEl.src = '';
     this.loaderEl.classList.add('hidden');
+  },
+
+  toggleDetails() {
+    const isHidden = this.detailsEl.classList.toggle('hidden');
+    this.detailsToggleEl.textContent = isHidden ? 'Show Details' : 'Hide Details';
   },
 
   showPrev() {
@@ -200,13 +272,28 @@ const lightbox = {
       translate.y = Math.max(-maxTranslateY, Math.min(maxTranslateY, translate.y));
 
       this.imageEl.style.cursor = 'grab';
+      this.toggleUi(false);
     } else {
       translate.x = 0;
       translate.y = 0;
       this.imageEl.style.cursor = 'zoom-in';
+      this.toggleUi(true);
     }
 
     this.imageEl.style.transform = `translate(${translate.x}px, ${translate.y}px) scale(${zoom})`;
+  },
+
+  toggleUi(show) {
+    const elements = [this.navPrevEl, this.navNextEl, this.infoEl];
+    elements.forEach(el => {
+      if (el) {
+        if (show) {
+          el.classList.remove('opacity-0', 'pointer-events-none');
+        } else {
+          el.classList.add('opacity-0', 'pointer-events-none');
+        }
+      }
+    });
   },
 
   addEventListeners() {
