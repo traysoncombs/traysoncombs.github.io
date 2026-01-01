@@ -119,12 +119,6 @@ module.exports = function (eleventyConfig) {
 		}).toFormat("yyyy-LL-dd");
 	});
 
-	// Example Collections
-	// Filter source file names using a glob
-	// eleventyConfig.addCollection("posts", function (collectionApi) {
-	// 	return collectionApi.getFilteredByGlob("./src/_posts/**/*.md");
-	// });
-
 	// Compress/Minify HTML output on production builds
 	eleventyConfig.addTransform("compressHTMLOutput", (content, outputPath) => {
 		const options = {
