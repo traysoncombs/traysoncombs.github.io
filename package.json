@@ -7,8 +7,8 @@
 		"dev:postcss": "postcss src/_assets/css/styles.css -o src/static/build/styles.min.css --watch --verbose",
 		"dev:scripts": "esbuild src/_assets/js/project-card.js --bundle --watch --outfile=src/static/build/scripts.min.js",
 		"dev:11ty": "eleventy --serve --watch",
-		"build:postcss": "NODE_ENV=production postcss src/_assets/css/styles.css -o src/_includes/styles.min.css",
-		"build:11ty": "ELEVENTY_ENV=production eleventy",
+		"build:postcss": "cross-env NODE_ENV=production postcss src/_assets/css/styles.css -o src/_includes/styles.min.css",
+		"build:11ty": "cross-env ELEVENTY_ENV=production eleventy",
 		"build:scripts": "esbuild src/_assets/js/project-card.js --bundle --minify --outfile=dist/static/build/scripts.min.js",
 		"dev": "run-p dev:*",
 		"build": "run-s clean build:*"
@@ -30,6 +30,7 @@
 		"postcss-import": "^16.1.0",
 		"tailwindcss": "^4.0.17",
 		"terser": "^5.39.0",
-		"@11ty/eleventy-fetch": "^5.1.1"
+		"@11ty/eleventy-fetch": "^5.1.1",
+		"cross-env": "^10.1.0"
 	}
 }

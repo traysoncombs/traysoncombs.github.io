@@ -5,6 +5,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+.idea/
+
 # Runtime data
 pids
 *.pid
@@ -63,7 +65,7 @@ typings/
 # Mac
 .DS_Store
 
-# Build 
+# Build
 dist
 
 # Don't commit temp build files
