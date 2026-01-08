@@ -1,0 +1,16 @@
+<a href="{{ post.url }}" class="flex flex-col h-full bg-secondary border border-secondary rounded-lg p-4 hover:border-accent hover:shadow-lg transition-all">
+  <h2 class="text-xl font-bold text-primary-text mb-2 group-hover:text-accent">{{ post.data.title }}</h2>
+  <div class="text-sm text-secondary-text mb-3">
+    {{ post.date | htmlDateString }}
+  </div>
+  <div class="text-secondary-text mb-4 flex-grow line-clamp-3">
+    {{ post.templateContent | striptags | truncate(150) }}
+  </div>
+  {% if post.data.categories %}
+    <div class="flex flex-wrap gap-2 mt-auto">
+      {% for category in post.data.categories %}
+        <span class="bg-accent text-white text-xs px-2 py-1 rounded">{{ category }}</span>
+      {% endfor %}
+    </div>
+  {% endif %}
+</a>

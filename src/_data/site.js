@@ -1,11 +1,13 @@
-module.exports = {
-	"title": "Eleventy Web Starter",
-	"description": "Minimal boilerplate for new projects built with Eleventy, Tailwind, PostCSS and esbuild",
-	"url": "https://eleventywebstarter.netlify.app",
-	"author": "Chris Collins",
-	"meta_data": {
-		"twitter": "@chrissy_dev",
-		"opengraph_default": "/static/opengraph-default.webp"
-	},
-	"env": process.env.ELEVENTY_ENV === 'production'
-}
+module.exports = function () {
+	return {
+		"title": "Trayson's Website",
+		"description": "This is just a little personal website that I vibecoded to showcase some of my projects as well my astroimages that I've taken.",
+		"url": "https://traysoncombs.com",
+		"author": "Trayson Combs",
+		"meta_data": {
+			"Instagram": "@trayson_combs",
+		},
+		"env": process.env.ELEVENTY_ENV === 'production'
+	};
+};
+

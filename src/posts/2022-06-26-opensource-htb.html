@@ -5,7 +5,7 @@ date: 2022-06-26 06:31:33.000000000 -05:00
 categories: [Hackthebox]
 tags: []
 author: traysoncombs
-permalink: "/opensource-htb"
+permalink: "/opensource-htb.html"
 ---
 <html><body>
 <figure class="wp-block-image aligncenter size-large is-style-default"><img src="{{site.baseurl}}/assets/2022/06/OpenSource-1024x775.png" alt="" class="wp-image-87"></figure>
@@ -20,7 +20,7 @@ permalink: "/opensource-htb"
 <pre class="wp-block-code"><code lang="bash" class="language-bash">$ nmap -sVC -T4 opensource.htb
 PORT     STATE    SERVICE VERSION
 22/tcp   open     ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.7 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
+| ssh-hostkey:
 |   2048 1e:59:05:7c:a9:58:c9:23:90:0f:75:23:82:3d:05:5f (RSA)
 |   256 48:a8:53:e7:e0:08:aa:1d:96:86:52:bb:88:56:a0:b7 (ECDSA)
 |_  256 02:1f:97:9e:3c:8e:7a:1c:7c:af:9d:5a:25:4b:b8:c8 (ED25519)
@@ -40,7 +40,7 @@ PORT     STATE    SERVICE VERSION
 <p class="has-text-align-left"><br>The downloaded source appears to be a git repo, maybe searching through old commits will yield some interesting information?<br>The repo appeared to contain two branches, public as well as dev. The public branch contained two commits neither of which are all that interesting.<br>Dev had a couple commits:</p>
 <p><!-- /wp:paragraph --></p>
 <p><!-- wp:code --></p>
-<pre class="wp-block-code"><code lang="bash" class="language-bash">$ git log         
+<pre class="wp-block-code"><code lang="bash" class="language-bash">$ git log
 commit c41fedef2ec6df98735c11b2faf1e79ef492a0f3 (HEAD -&gt; dev)
 Author: gituser &lt;gituser@local&gt;
 Date:   Thu Apr 28 13:47:24 2022 +0200
@@ -177,10 +177,10 @@ def rev(ip, port):
 <p>From there I simply created a netcat listener and then went to: opensource.htb/&lt;my IP&gt;/4000.</p>
 <p><!-- /wp:paragraph --></p>
 <p><!-- wp:code --></p>
-<pre class="wp-block-code"><code lang="bash" class="language-bash">$ nc -lvp 4000                
+<pre class="wp-block-code"><code lang="bash" class="language-bash">$ nc -lvp 4000
 listening on [any] 4000 ...
 connect to [&lt;my IP&gt;] from opensource.htb [10.10.11.164] 59348
-/app # 
+/app #
 </code></pre>
 <p><!-- /wp:code --></p>
 <p><!-- wp:paragraph --></p>
@@ -206,7 +206,7 @@ connect to [&lt;my IP&gt;] from opensource.htb [10.10.11.164] 59348
 <p>Upon logging in there is one repo, which is a backup of use dev01's home directory with the .ssh folder and beautiful private key included! After copying the key into my .ssh folder I was able to ssh in and grab the user flag without any issue!</p>
 <p><!-- /wp:paragraph --></p>
 <p><!-- wp:code --></p>
-<pre class="wp-block-code"><code lang="bash" class="language-bash">dev01@opensource:~$ cat user.txt 
+<pre class="wp-block-code"><code lang="bash" class="language-bash">dev01@opensource:~$ cat user.txt
 e1883---------------------------------</code></pre>
 <p><!-- /wp:code --></p>
 <p><!-- wp:heading --></p>
