@@ -2,8 +2,8 @@
 const INDEX_JSON_URL = '/static/index.json';
 
 // Utility to extract date from filename
-function extractDateFromFilename(title) {
-  const match = title.match(/^(\d{8})/);
+function createDate(date) {
+  const match = date.match(/^(\d{8})/);
   if (match) {
     const dateStr = match[1];
     const year = dateStr.substring(0, 4);
@@ -36,7 +36,7 @@ const gallery = {
       const response = await fetch(INDEX_JSON_URL);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const config = await response.json();
-      this.images = config.sort((a, b) => extractDateFromFilename(b.title) - extractDateFromFilename(a.title));
+      this.images = config.sort((a, b) => createDate(b.date) - createDate(a.date));
       return true;
     } catch (error) {
       console.error('Error loading gallery configuration:', error);
