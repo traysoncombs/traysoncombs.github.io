@@ -127,7 +127,6 @@ const projectConfigs = [
 ];
 
 
-
 module.exports = async function () {
 	let projects = (await Promise.all(
 		projectConfigs.map(config => githubToProject(config.url, config))

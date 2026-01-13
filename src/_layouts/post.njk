@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 ---
-<article class="max-w-4xl mx-auto px-4 py-8">
+<div class="max-w-4xl mx-auto px-4 py-8">
   <header class="mb-8">
     <h1 class="text-3xl font-bold text-primary-text mb-2">{{ title }}</h1>
     <div class="flex flex-wrap gap-2 text-sm text-secondary-text">
@@ -17,7 +17,7 @@ layout: base.njk
     </div>
   </header>
 
-  <div class="prose max-w-none text-primary-text">
+  <article class="prose max-w-none text-primary-text">
     {{ content | replace("<html><body>", "") | replace("</body></html>", "") | safe }}
-  </div>
-</article>
+  </article>
+</div>

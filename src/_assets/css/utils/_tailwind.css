@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
 @source '../../../**/*.js';
 
@@ -36,5 +37,28 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
+  }
+
+}
+
+/* Customize prose styles for dark theme */
+@layer utilities {
+  .prose {
+    --tw-prose-body: var(--color-primary-text) !important;
+    --tw-prose-headings: var(--color-primary-text) !important;
+    --tw-prose-lead: var(--color-primary-text) !important;
+    --tw-prose-links: var(--color-accent) !important;
+    --tw-prose-bold: var(--color-primary-text) !important;
+    --tw-prose-counters: var(--color-primary-text) !important;
+    --tw-prose-bullets: var(--color-secondary-text) !important;
+    --tw-prose-hr: var(--color-secondary-text) !important;
+    --tw-prose-quotes: var(--color-primary-text) !important;
+    --tw-prose-quote-borders: var(--color-accent) !important;
+    --tw-prose-captions: var(--color-secondary-text) !important;
+    --tw-prose-code: var(--color-accent) !important;
+    --tw-prose-pre-code: var(--color-primary-text) !important;
+    --tw-prose-pre-bg: var(--color-secondary) !important;
+    --tw-prose-th-borders: var(--color-secondary-text) !important;
+    --tw-prose-td-borders: var(--color-secondary-text) !important;
   }
 }
