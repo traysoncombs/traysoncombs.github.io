@@ -1,23 +1,25 @@
 ---
 layout: base.njk
 ---
-<div class="max-w-4xl mx-auto px-4 py-8">
-  <header class="mb-8">
-    <h1 class="text-3xl font-bold text-primary-text mb-2">{{ title }}</h1>
-    <div class="flex flex-wrap gap-2 text-sm text-secondary-text">
-      <time datetime="{{ date | htmlDateString }}">{{ date | htmlDateString }}</time>
-      {% if categories %}
-        <span class="mx-2">•</span>
-        <div class="flex gap-2">
-          {% for category in categories %}
-            <span class="text-accent">{{ category }}</span>
-          {% endfor %}
-        </div>
-      {% endif %}
-    </div>
-  </header>
+<div class="w-full min-w-0">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 min-w-0">
+    <header class="mb-6 sm:mb-8">
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-text mb-3 leading-tight break-words">{{ title }}</h1>
+      <div class="flex flex-wrap gap-2 text-xs sm:text-sm text-secondary-text">
+        <time datetime="{{ date | htmlDateString }}">{{ date | htmlDateString }}</time>
+        {% if categories %}
+          <span class="mx-1 sm:mx-2">•</span>
+          <div class="flex flex-wrap gap-2">
+            {% for category in categories %}
+              <span class="text-accent">{{ category }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </header>
 
-  <article class="prose max-w-none text-primary-text">
-    {{ content | replace("<html><body>", "") | replace("</body></html>", "") | safe }}
-  </article>
+    <article class="prose prose-sm sm:prose-base lg:prose-lg max-w-none text-primary-text prose-headings:leading-tight prose-p:text-base prose-p:leading-relaxed prose-img:w-full prose-img:h-auto min-w-0">
+      {{ content | replace("<html><body>", "") | replace("</body></html>", "") | safe }}
+    </article>
+  </div>
 </div>

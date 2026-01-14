@@ -22,9 +22,9 @@
   </noscript>
 </head>
 <body>
-<div id="container" class="grid h-full w-full">
+<div id="container" class="flex-col min-w-0 h-lvh">
   {% include "navbar.njk" %}
-  <div id="content" class="grid py-4 lg:p-5 sm:p-1 w-full h-full">
+  <div id="content" class="grid py-4 lg:p-5 sm:p-1 min-w-0 h-100">
     {{ content | safe }}
   </div>
 </div>
