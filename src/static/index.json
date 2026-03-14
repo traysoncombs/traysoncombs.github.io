@@ -805,29 +805,6 @@
     }
   },
   {
-    "id": "1hcVOBXgYDUgTy-tjV0h4GWwr38XSvQmN",
-    "title": "Andromeda",
-    "thumbnail": "https://lh3.googleusercontent.com/d/1TuaqIHYVQ2FXzCqdslGL0L53mW4Fme0B",
-    "fullRes": "https://lh3.googleusercontent.com/d/1hcVOBXgYDUgTy-tjV0h4GWwr38XSvQmN",
-    "width": 7485,
-    "height": 4320,
-    "hash": "addc1391e35d1480d2ee4057b943a2fffcdd2fac227c5c5a7918c86fc1a91d56",
-    "date": "20251114",
-    "description": "",
-    "bortle": 4,
-    "photo_details": {
-      "integration_time": 1128,
-      "exposure_count": 50,
-      "exposure_length": 180,
-      "gain": 0
-    },
-    "equipment": {
-      "camera": "ZWO ASI 585MC Pro",
-      "mount": "Skywatcher Wave 150i",
-      "telescope": "AT60ed 360mm FL 60mm Aperture"
-    }
-  },
-  {
     "id": "12JDTMJNa8suZZB0Ai2rrhD3S9pEB7QpW",
     "thumbnail": "https://lh3.googleusercontent.com/d/112zYKFnNn0WkMBvQuQWSELB_RSwyQ0ZK",
     "fullRes": "https://lh3.googleusercontent.com/d/12JDTMJNa8suZZB0Ai2rrhD3S9pEB7QpW",
