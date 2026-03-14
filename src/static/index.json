@@ -994,8 +994,22 @@
     "fullRes": "https://lh3.googleusercontent.com/d/1KnnpAt7zfavVJ72UqVKAb_TGTZX1WzB8",
     "width": 3840,
     "height": 2160,
-    "title": "20260213 - Rosette",
-    "hash": "44a7b6704c9f2ca87b782271f58c23338d499469abba99a9be2153940ce00884"
+    "title": "Rosette Nebula",
+    "hash": "44a7b6704c9f2ca87b782271f58c23338d499469abba99a9be2153940ce00884",
+    "date": "20260213",
+    "description": "",
+    "bortle": 5,
+    "photo_details": {
+      "integration_time": 180,
+      "exposure_count": 60,
+      "exposure_length": 180,
+      "gain": 0
+    },
+    "equipment": {
+      "camera": "ZWO ASI 585MC Pro",
+      "mount": "Skywatcher Wave 150i",
+      "telescope": "AT60ed 360mm FL 60mm Aperture"
+    }
   },
   {
     "id": "1HJbFDxAbK5VIqrSED-mvlPk3-JNgT0h3",
