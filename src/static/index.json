@@ -948,8 +948,22 @@
     "fullRes": "https://lh3.googleusercontent.com/d/1t51mV-hPEbBFFFN18xngZh-mYwyWnsTV",
     "width": 3840,
     "height": 2160,
-    "title": "20251219 - Markarian",
-    "hash": "83937cc385d61e76835a1352d31a25a1f0e038d123ae4f70b31d938ccf9d7684"
+    "title": "Markarian Chain",
+    "hash": "83937cc385d61e76835a1352d31a25a1f0e038d123ae4f70b31d938ccf9d7684",
+    "date": "20251219",
+    "description": "",
+    "bortle": 5,
+    "photo_details": {
+      "integration_time": 491,
+      "exposure_count": -1,
+      "exposure_length": -1,
+      "gain": 0
+    },
+    "equipment": {
+      "camera": "ZWO ASI 585MC Pro",
+      "mount": "Skywatcher Wave 150i",
+      "telescope": "AT60ed 360mm FL 60mm Aperture"
+    }
   },
   {
     "id": "1lZ3O8HI0PbGxvp4hg9qXvXIheMwkJ2ct",
