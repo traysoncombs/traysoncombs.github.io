@@ -872,5 +872,161 @@
       "mount": "Skywatcher Star Adventurer 2i",
       "telescope": "AT60ed 360mm FL 60mm Aperture"
     }
+  },
+  {
+    "id": "1jNFhZzreUS2aTYskpW8Y2c3T7cQWYStt",
+    "thumbnail": "https://lh3.googleusercontent.com/d/1EcKadIXAvmT2cxfeMi9i5VWxwmBmBFHS",
+    "fullRes": "https://lh3.googleusercontent.com/d/1jNFhZzreUS2aTYskpW8Y2c3T7cQWYStt",
+    "width": 3840,
+    "height": 2160,
+    "date": "20251018",
+    "title": "IC 1848",
+    "description": "",
+    "bortle": 5,
+    "photo_details": {
+      "integration_time": 488,
+      "exposure_count": 96,
+      "exposure_length": 300,
+      "gain": 0
+    },
+    "equipment": {
+      "camera": "ZWO ASI 585MC Pro",
+      "mount": "Skywatcher Wave 150i",
+      "telescope": "AT60ed 360mm FL 60mm Aperture"
+    },
+    "hash": "1ddd334dfa074d627e8ad8311ff6d6fd3616c8f00c5944f033c1f2659576d2b2"
+  },
+  {
+    "id": "1BleCRlLAP7GSOs9vbP19SFgpsoOzto12",
+    "thumbnail": "https://lh3.googleusercontent.com/d/1KXF4MBBk36zk4oXFvQyhDaU-hvBBrc4c",
+    "fullRes": "https://lh3.googleusercontent.com/d/1BleCRlLAP7GSOs9vbP19SFgpsoOzto12",
+    "width": 7485,
+    "height": 4320,
+    "date": "20251114",
+    "title": "Andromeda",
+    "description": "",
+    "bortle": 4,
+    "photo_details": {
+      "integration_time": 1128,
+      "exposure_count": 50,
+      "exposure_length": 180,
+      "gain": 0
+    },
+    "equipment": {
+      "camera": "ZWO ASI 585MC Pro",
+      "mount": "Skywatcher Wave 150i",
+      "telescope": "AT60ed 360mm FL 60mm Aperture"
+    },
+    "hash": "90f43b973ef88bb35a07d7e508f7a0f9db77bc37589c114de07f30f4a76c710c"
+  },
+  {
+    "id": "1eMb5qPtGDLp4vFJO5H4HoRStLQPYFVdf",
+    "thumbnail": "https://lh3.googleusercontent.com/d/1x0onreE0i4egXUuyk0ZQ9YbdzAbLaqlD",
+    "fullRes": "https://lh3.googleusercontent.com/d/1eMb5qPtGDLp4vFJO5H4HoRStLQPYFVdf",
+    "width": 3840,
+    "height": 2160,
+    "date": "20251214",
+    "title": "Pleiades",
+    "description": "",
+    "bortle": 5,
+    "photo_details": {
+      "integration_time": 1283,
+      "exposure_count": -1,
+      "exposure_length": -1,
+      "gain": 0
+    },
+    "equipment": {
+      "camera": "ZWO ASI 585MC Pro",
+      "mount": "Skywatcher Wave 150i",
+      "telescope": "AT60ed 360mm FL 60mm Aperture"
+    },
+    "hash": "abfd9aa29de6ff21f6ea958f4c2d093f8ae9081d1b42eed50947583b20e7f70c"
+  },
+  {
+    "id": "1t51mV-hPEbBFFFN18xngZh-mYwyWnsTV",
+    "thumbnail": "https://lh3.googleusercontent.com/d/1CW8bx76p2axFW58FZ3fIqBz4UFVoH1Js",
+    "fullRes": "https://lh3.googleusercontent.com/d/1t51mV-hPEbBFFFN18xngZh-mYwyWnsTV",
+    "width": 3840,
+    "height": 2160,
+    "title": "20251219 - Markarian",
+    "hash": "83937cc385d61e76835a1352d31a25a1f0e038d123ae4f70b31d938ccf9d7684"
+  },
+  {
+    "id": "1lZ3O8HI0PbGxvp4hg9qXvXIheMwkJ2ct",
+    "thumbnail": "https://lh3.googleusercontent.com/d/1_9n-Cpiq4rnoOgs--ow8B7X98q0vugjV",
+    "fullRes": "https://lh3.googleusercontent.com/d/1lZ3O8HI0PbGxvp4hg9qXvXIheMwkJ2ct",
+    "width": 3840,
+    "height": 2160,
+    "date": "20260207",
+    "title": "Flame & Horsehead Nebula",
+    "description": "",
+    "bortle": 5,
+    "photo_details": {
+      "integration_time": 420,
+      "exposure_count": 84,
+      "exposure_length": 300,
+      "gain": 0
+    },
+    "equipment": {
+      "camera": "ZWO ASI 585MC Pro",
+      "mount": "Skywatcher Wave 150i",
+      "telescope": "AT60ed 360mm FL 60mm Aperture"
+    },
+    "hash": "d7d3cbc98665cb92a28af2407888f567cd8885b3695c8e5154380568920cad6d"
+  },
+  {
+    "id": "1KnnpAt7zfavVJ72UqVKAb_TGTZX1WzB8",
+    "thumbnail": "https://lh3.googleusercontent.com/d/1SEsdW5ZGdzhkksAxFfvCEqC9F4gQeykd",
+    "fullRes": "https://lh3.googleusercontent.com/d/1KnnpAt7zfavVJ72UqVKAb_TGTZX1WzB8",
+    "width": 3840,
+    "height": 2160,
+    "title": "20260213 - Rosette",
+    "hash": "44a7b6704c9f2ca87b782271f58c23338d499469abba99a9be2153940ce00884"
+  },
+  {
+    "id": "1HJbFDxAbK5VIqrSED-mvlPk3-JNgT0h3",
+    "thumbnail": "https://lh3.googleusercontent.com/d/1-9o0FAnq2dqg8ONqFOBKli2hJVOOQ-wS",
+    "fullRes": "https://lh3.googleusercontent.com/d/1HJbFDxAbK5VIqrSED-mvlPk3-JNgT0h3",
+    "width": 3840,
+    "height": 2160,
+    "date": "20260214",
+    "title": "M78",
+    "description": "",
+    "bortle": 5,
+    "photo_details": {
+      "integration_time": 190,
+      "exposure_count": 38,
+      "exposure_length": 300,
+      "gain": 0
+    },
+    "equipment": {
+      "camera": "ZWO ASI 585MC Pro",
+      "mount": "Skywatcher Wave 150i",
+      "telescope": "AT60ed 360mm FL 60mm Aperture"
+    },
+    "hash": "52e8b2d4dad86fbbd83bf7d7cae8a488b0ee1727a9c5f350cd7560953283c381"
+  },
+  {
+    "id": "1Vrux9tIGyoI52Ye0SULUwUa36PK_ayFg",
+    "thumbnail": "https://lh3.googleusercontent.com/d/1LZ4rjH5QA_LHhPkVwi4lMTgtvcjMyD17",
+    "fullRes": "https://lh3.googleusercontent.com/d/1Vrux9tIGyoI52Ye0SULUwUa36PK_ayFg",
+    "width": 2677,
+    "height": 1406,
+    "date": "20260309",
+    "title": "Bode's Galaxy",
+    "description": "",
+    "bortle": 5,
+    "photo_details": {
+      "integration_time": 363,
+      "exposure_count": -1,
+      "exposure_length": -1,
+      "gain": 0
+    },
+    "equipment": {
+      "camera": "ZWO ASI 585MC Pro",
+      "mount": "Skywatcher Wave 150i",
+      "telescope": "AT60ed 360mm FL 60mm Aperture"
+    },
+    "hash": "6a5eba65ae55d83f11c107f46a41521cfeeff39edba5d82866e7dde8e61aa755"
   }
 ]
